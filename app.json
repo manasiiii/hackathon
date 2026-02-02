@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Inner Circle",
+    "slug": "inner-circle",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "innercircle",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0B1E"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.innercircle.journal",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true,
+          "NSExceptionDomains": {
+            "localhost": { "NSExceptionAllowsInsecureHTTPLoads": true },
+            "127.0.0.1": { "NSExceptionAllowsInsecureHTTPLoads": true }
+          }
+        },
+        "NSMicrophoneUsageDescription": "Inner Circle uses your microphone for voice journaling",
+        "NSSpeechRecognitionUsageDescription": "Inner Circle uses speech recognition for voice journaling",
+        "NSHealthShareUsageDescription": "Inner Circle reads your health data to provide wellness insights",
+        "NSHealthUpdateUsageDescription": "Inner Circle may save mindfulness minutes to your health data"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "schedule",
+          "sounds": []
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

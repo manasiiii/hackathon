@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>InnerCircle Design Documentation</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">InnerCircle Design Documentation</h1>
+</header>
+<h1 id="innercircle---design-documentation">InnerCircle - Design
+Documentation</h1>
+<h2 id="voice-first-ai-journaling-companion">Voice-First AI Journaling
+Companion</h2>
+<hr />
+<h2 id="executive-summary">1. Executive Summary</h2>
+<p><strong>InnerCircle</strong> is a voice-first mental wellness
+journaling app that removes the friction of traditional journaling.
+Users simply speak their thoughts, and our AI agents analyze emotions,
+discover patterns, and generate personalized insights—all without
+requiring users to type a single word.</p>
+<h3 id="key-differentiators">Key Differentiators</h3>
+<ul>
+<li><strong>Voice-First</strong>: Speak naturally, no keyboard
+required</li>
+<li><strong>Context-Aware Questions</strong>: AI generates questions
+based on your history</li>
+<li><strong>Agentic Architecture</strong>: Multiple specialized AI
+agents work together</li>
+<li><strong>Privacy-Focused</strong>: Local-first data storage,
+anonymous by default</li>
+</ul>
+<hr />
+<h2 id="tech-stack">2. Tech Stack</h2>
+<h3 id="frontend">Frontend</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>React Native + Expo</td>
+<td>Cross-platform mobile app</td>
+</tr>
+<tr class="even">
+<td>TypeScript</td>
+<td>Type-safe development</td>
+</tr>
+<tr class="odd">
+<td>Expo Router</td>
+<td>File-based navigation</td>
+</tr>
+<tr class="even">
+<td>React Native Reanimated</td>
+<td>Smooth animations</td>
+</tr>
+<tr class="odd">
+<td>Expo Speech/Audio</td>
+<td>Voice recording &amp; TTS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend">Backend</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FastAPI</td>
+<td>High-performance Python API</td>
+</tr>
+<tr class="even">
+<td>SQLAlchemy + SQLite</td>
+<td>Local-first database</td>
+</tr>
+<tr class="odd">
+<td>Pydantic</td>
+<td>Request/response validation</td>
+</tr>
+<tr class="even">
+<td>OpenAI GPT-4</td>
+<td>AI agent intelligence</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure">Infrastructure</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Expo Notifications</td>
+<td>Local scheduled reminders</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="system-architecture">3. System Architecture</h2>
+<h3 id="high-level-overview">High-Level Overview</h3>
+<p><strong>Mobile App Layer:</strong> - Home Screen → Voice Session -
+Journal List → Entry Details - Insights Screen → Visualizations -
+Settings → Schedule Configuration</p>
+<p><strong>Voice Session Flow:</strong> 1. Speech-to-Text (STT) captures
+user voice 2. Backend processes and generates response 3. Text-to-Speech
+(TTS) speaks AI response</p>
+<p><strong>Backend Layer:</strong> - FastAPI REST API - Agent
+Orchestrator coordinates AI agents - SQLite stores all user data
+locally</p>
+<p><strong>Data Layer:</strong> - Users, Journals, Insights, Health
+Data, Schedules</p>
+<hr />
+<h2 id="agentic-architecture">4. Agentic Architecture</h2>
+<p>Our multi-agent system uses specialized AI agents that each handle
+specific tasks:</p>
+<h3 id="agent-overview">Agent Overview</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 38%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Agent</th>
+<th>When Called</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Question Generator</strong></td>
+<td>On app open</td>
+<td>Analyzes past 3-7 days of journals to generate a personalized
+starting question</td>
+</tr>
+<tr class="even">
+<td><strong>Emotion Analyst</strong></td>
+<td>On journal save</td>
+<td>Detects emotions, measures intensity, calculates sentiment
+score</td>
+</tr>
+<tr class="odd">
+<td><strong>Pattern Discovery</strong></td>
+<td>On insight generation</td>
+<td>Finds trends over 7-30 days, correlates with health data</td>
+</tr>
+<tr class="even">
+<td><strong>Reflection Agent</strong></td>
+<td>During conversation</td>
+<td>Generates empathetic follow-up responses to continue the
+dialogue</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-agents-work-together">How Agents Work Together</h3>
+<p><strong>Starting a Session:</strong> 1. User opens voice session 2.
+<strong>Question Generator</strong> reads recent journals 3. Returns
+personalized question like <em>“You mentioned work stress yesterday. How
+are you feeling about it today?”</em></p>
+<p><strong>During Conversation:</strong> 1. User speaks their thoughts
+2. <strong>Reflection Agent</strong> processes what they said 3.
+Generates supportive follow-up question to deepen reflection 4.
+Conversation continues naturally</p>
+<p><strong>On Save:</strong> 1. Full transcript sent to <strong>Emotion
+Analyst</strong> 2. Detects emotions:
+<code>[{name: "anxious", intensity: 0.7}, {name: "hopeful", intensity: 0.5}]</code>
+3. Extracts themes: <code>["work", "relationships"]</code> 4. Calculates
+sentiment: <code>0.3 (slightly positive)</code></p>
+<p><strong>Weekly Insights:</strong> 1. <strong>Pattern
+Discovery</strong> analyzes all journals from past week 2. Finds
+correlations (e.g., “better mood on days with more sleep”) 3. Generates
+actionable suggestions</p>
+<hr />
+<h2 id="data-flow">5. Data Flow</h2>
+<h3 id="voice-journal-session">Voice Journal Session</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Action</th>
+<th>API Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>User opens app</td>
+<td><code>GET /journals/question</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>AI speaks personalized question</td>
+<td>Text-to-Speech</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>User responds verbally</td>
+<td>Speech-to-Text</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>AI generates follow-up</td>
+<td><code>POST /voice/reflection</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Conversation continues</td>
+<td>Steps 3-4 repeat</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>User ends session</td>
+<td><code>POST /journals</code> (saves transcript)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Emotion analysis runs</td>
+<td>Backend processes automatically</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-api-endpoints-used">Key API Endpoints Used</h3>
+<ul>
+<li><strong>Question Generation</strong>:
+<code>GET /journals/question?user_id=1&amp;days=3</code></li>
+<li><strong>Voice Reflection</strong>:
+<code>POST /voice/reflection</code> with
+<code>{content: "user's message"}</code></li>
+<li><strong>Save Journal</strong>: <code>POST /journals</code> with full
+transcript</li>
+<li><strong>Get Insights</strong>:
+<code>GET /insights/weekly?user_id=1</code></li>
+</ul>
+<hr />
+<h2 id="database-schema">6. Database Schema</h2>
+<h3 id="tables">Tables</h3>
+<p><strong>users</strong> - <code>id</code>, <code>anonymous_id</code>,
+<code>preferences</code>, <code>journaling_streak</code>,
+<code>total_entries</code>, <code>created_at</code></p>
+<p><strong>journals</strong> - <code>id</code>, <code>user_id</code>,
+<code>content</code>, <code>title</code>, <code>sentiment</code> (JSON),
+<code>emotions</code> (JSON), <code>themes</code> (JSON),
+<code>is_voice_entry</code>, <code>time_of_day</code>,
+<code>created_at</code></p>
+<p><strong>insights</strong> - <code>id</code>, <code>user_id</code>,
+<code>type</code>, <code>summary</code>, <code>patterns</code> (JSON),
+<code>suggestions</code> (JSON), <code>created_at</code></p>
+<p><strong>health_data</strong> - <code>id</code>, <code>user_id</code>,
+<code>date</code>, <code>sleep</code> (JSON), <code>activity</code>
+(JSON), <code>heart</code> (JSON)</p>
+<p><strong>scheduled_conversations</strong> - <code>id</code>,
+<code>user_id</code>, <code>time</code>, <code>days_of_week</code>
+(JSON), <code>conversation_mode</code>, <code>is_enabled</code></p>
+<hr />
+<h2 id="future-enhancements">7. Future Enhancements</h2>
+<h3 id="phase-1-push-notifications">Phase 1: Push Notifications</h3>
+<ul>
+<li>Time-based triggers (scheduled conversation times)</li>
+<li>Location-based triggers (arrive home → prompt to journal)</li>
+<li>Smart timing based on user patterns</li>
+</ul>
+<h3 id="phase-2-affirmations">Phase 2: Affirmations</h3>
+<ul>
+<li>Daily personalized affirmations based on recent journals</li>
+<li>Generated by Pattern Discovery + Reflection agents</li>
+<li>Morning motivation, evening reflection</li>
+</ul>
+<h3 id="phase-3-interactiveness-control">Phase 3: Interactiveness
+Control</h3>
+<ul>
+<li>Voice tone selection: Warmer / Neutral / Clear</li>
+<li>Follow-up depth: Minimal / Moderate / Deep dive</li>
+<li>AI personality: Listener only / Supportive coach / Direct
+analyst</li>
+</ul>
+<h3 id="phase-4-multi-user-support">Phase 4: Multi-User Support</h3>
+<ul>
+<li>Cloud database (PostgreSQL/Supabase)</li>
+<li>Secure authentication (OAuth/JWT)</li>
+<li>End-to-end encryption</li>
+<li>Cross-device sync</li>
+</ul>
+<h3 id="phase-5-custom-variable-graphs">Phase 5: Custom Variable
+Graphs</h3>
+<ul>
+<li>User selects X and Y variables</li>
+<li>Options: Sleep, Exercise, Screen time, Mood, Energy, Stress</li>
+<li>Scatter plots show personal correlations</li>
+<li>“I want to see how sleep affects my mood”</li>
+</ul>
+<h3 id="phase-6-agent-triggers">Phase 6: Agent Triggers</h3>
+<ul>
+<li>Health data sync → Agent adjusts tone (“User slept 4hrs, be
+gentle”)</li>
+<li>Calendar integration → Context-aware prompts (“Big meeting
+today”)</li>
+<li>Location changes → Activity-based check-ins</li>
+<li>Streak milestones → Celebration messages</li>
+</ul>
+<hr />
+<h2 id="conclusion">8. Conclusion</h2>
+<p>InnerCircle reimagines journaling for the modern user by making
+reflection voice first and effortless. Instead of typing into a blank
+page, you simply speak, turning journaling into something that feels as
+natural as having a conversation.</p>
+<p>InnerCircle is not a therapy app. The AI companion does not give
+advice, diagnose, reframe, or try to fix anything. It listens, reflects
+what it hears in simple human language, and occasionally asks a gentle
+question to help you go a little deeper.</p>
+<p>At its core, InnerCircle is a space to think out loud without
+pressure, guidance, or judgment so understanding can emerge on its
+own.</p>
+<hr />
+<p><em>Document Version: 1.0</em> <em>Last Updated: February
+2025</em></p>
+</body>
+</html>
